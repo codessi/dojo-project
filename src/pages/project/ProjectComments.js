@@ -3,6 +3,7 @@ import Avatar from "../../components/Avatar"
 import { timestamp } from "../../firebase/config"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useFirestore } from "../../hooks/useFirestore"
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 export default function ProjectComments({ project }) {
   const [newComment, setNewComment] = useState("")
@@ -10,15 +11,17 @@ export default function ProjectComments({ project }) {
 
   const { user } = useAuthContext()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    let commentToAdd = {
+ let commentToAdd = {
       displayName: user.displayName,
       photoURL: user.photoURL,
       content: newComment,
       createdAt: timestamp.fromDate(new Date()),
       id: Math.random(),
     }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+   
     // const NewDocument = {...project,project.comment}
 
     await updateDocument(project.id, {
@@ -42,7 +45,7 @@ export default function ProjectComments({ project }) {
                   <p>{el.displayName}</p>
                 </div>
                 <div className="comment-date">
-                  <p>date here</p>
+                  <p>{formatDistanceToNow(el.createdAt.toDate(), {addSuffix: true})}</p>
                 </div>
                 <div className="comment-content">
                   <p>{el.content}</p>

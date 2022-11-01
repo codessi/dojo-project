@@ -37,7 +37,9 @@ export default function ProjectSummary({project}) {
                 )
             })}
         </div>
-        {user.uid === project.createdBy.id &&  <button className='btn' onClick={handleDelete}>Delete</button>}
+        {/* {user.uid === project.createdBy.id && */}
+          <button className='btn' onClick={handleDelete}>Delete</button>
+          {/* } */}
        
     </div>
   )

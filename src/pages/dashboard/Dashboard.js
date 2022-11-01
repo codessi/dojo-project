@@ -28,7 +28,7 @@ const filteredDoc = documents && documents.filter( document => {
 })
 
   return (
-    <div style={{ border: "dotted" }}>
+    <div>
       <h2 className="page-title">Dashboard</h2>
       {error && <p className="error">{error}</p>}
       { documents && <ProjectFilter changeFilter={changeFilter} />}
