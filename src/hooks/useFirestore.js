@@ -48,7 +48,7 @@ export const useFirestore = (collection) => {
       const addedDocument = await ref.add({ ...doc, createdAt })
       console.log("addedDoc", addedDocument)
       dispatchIfNotCancelled({ type: 'ADDED_DOCUMENT', payload: addedDocument })
-      
+      console.log('respoonse from firestore', response)
     }
    
     catch (err) {
@@ -63,8 +63,8 @@ export const useFirestore = (collection) => {
       
       const updatedDocument = await ref.doc(id).update(updates)
       console.log('updated..',updatedDocument)
-      dispatchIfNotCancelled({ type: 'UPDATED_DOCUMENT', payload: updatedDocument })
-      console.log("update success")
+      await dispatchIfNotCancelled({ type: 'UPDATED_DOCUMENT', payload: updatedDocument })
+      console.log('respoonse from firestore', response)
     }
     catch (err) {
       dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })

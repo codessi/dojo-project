@@ -8,7 +8,7 @@ import ProjectComments from "./ProjectComments"
 export default function Project() {
   const { id } = useParams()
   const { document, error } = useDocument("projects", id)
-
+console.log("doc from Projectjs" , document)
   if (error) {
     return <div className="error">{error}</div>
   }
@@ -17,7 +17,6 @@ export default function Project() {
     return <div className="loading">Loading...</div>
   }
 
-  console.log("doc from Project" ,document)
   return (
     <div className="project-details">
       <ProjectSummary project = {document} />

@@ -75,6 +75,7 @@ export default function Create() {
 
     }
     await addDocument(project)
+    console.log("repsone from create",response)
     if(!response.error){
       history.push('/')
     }
